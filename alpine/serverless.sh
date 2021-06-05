@@ -13,5 +13,9 @@ echo "---> Installing requirements"
 pip install -r requirements.txt
 fi
 
+if [[ -z "${HTTP_PORT}" ]]; then
+export HTTP_PORT=3000
+fi
+
 echo "---> Starting offline application"
-serverless offline start --host 0.0.0.0 --httpPort 3000
+serverless offline start --host 0.0.0.0 --httpPort $HTTP_PORT
