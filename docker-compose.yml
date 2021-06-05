@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  serverless:
+    container_name: python_serverless
+    image: lucasfrancaid/python-serverless-offline
+    environment:
+      SERVERLESS_ACCESS_KEY: <SERVERLESS_ACCESS_KEY>  # Optional
+      AWS_ACCESS_KEY_ID: <AWS_ACCESS_KEY_ID>  # Required if you need use aws resources
+      AWS_SECRET_ACCESS_KEY: <AWS_SECRET_ACCESS_KEY>  # Required if you need use aws resources
+    ports:
+      - '3000:3000'
+    volumes:
+      - .:/usr/app
