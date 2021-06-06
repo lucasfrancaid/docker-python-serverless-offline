@@ -1,3 +1,5 @@
+[![Docker Image CI](https://github.com/lucasfrancaid/docker-python-serverless-offline/actions/workflows/docker-image.yml/badge.svg?branch=master)](https://github.com/lucasfrancaid/docker-python-serverless-offline/actions/workflows/docker-image.yml)
+
 # Docker Python Serverless Offline
 An image to run your python offline
 
