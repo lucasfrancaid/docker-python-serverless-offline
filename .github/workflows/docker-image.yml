@@ -21,10 +21,12 @@ jobs:
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
     - name: Build the Docker images
-      run:
-        docker build . --file /alpine/Dockerfile --tag ${DOCKER_USER}/${IMAGE_NAME}:alpine
-        docker build . --file /slim-buster/Dockerfile --tag ${DOCKER_USER}/${IMAGE_NAME}:slim-buster
+      run: |
+        echo "$IMAGE_NAME"
+        echo "$DOCKER_USER"
+        docker build . --file /alpine/Dockerfile --tag $DOCKER_USER/python-serverless-offline:alpine
+        docker build . --file /slim-buster/Dockerfile --tag $DOCKER_USER/python-serverless-offline:slim-buster
     - name: Push the Docker images
-      run:
-        docker push $DOCKER_USER/$IMAGE_NAME:alpine
-        docker push $DOCKER_USER/$IMAGE_NAME:slim-buster
+      run: |
+        docker push $DOCKER_USER/python-serverless-offline:alpine
+        docker push $DOCKER_USER/python-serverless-offline:slim-buster
