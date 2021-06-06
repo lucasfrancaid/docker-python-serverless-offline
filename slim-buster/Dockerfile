@@ -8,9 +8,9 @@ RUN apt-get update -y && \
     apt-get -y install nodejs npm
 
 RUN pip install -U pip && \
-    npm install -g npm serverless serverless-offline
+    npm install -g --silent npm serverless serverless-offline
 
-COPY ./serverless.sh /serverless.sh
+COPY ./slim-buster/serverless.sh /serverless.sh
 RUN chmod +x /serverless.sh
 
 ENTRYPOINT ["/bin/sh", "/serverless.sh"]

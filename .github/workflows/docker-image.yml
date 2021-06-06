@@ -24,8 +24,8 @@ jobs:
         IMAGE_NAME: ${{secrets.IMAGE_NAME}}
         DOCKER_USER: ${{secrets.DOCKER_USER}}
       run: |
-        docker build . --file ./alpine/Dockerfile --tag $DOCKER_USER/$IMAGE_NAME:alpine .
-        docker build . --file ./slim-buster/Dockerfile --tag $DOCKER_USER/$IMAGE_NAME:slim-buster .
+        docker build -f ./alpine/Dockerfile -t $DOCKER_USER/$IMAGE_NAME:alpine .
+        docker build -f ./slim-buster/Dockerfile -t $DOCKER_USER/$IMAGE_NAME:slim-buster .
     - name: Push the Docker images
       env:
         IMAGE_NAME: ${{secrets.IMAGE_NAME}}
