@@ -26,5 +26,15 @@ Run serverless-offline:
 docker-compose up
 ```
 
+## Environment variables
+If you need access aws resources, you can add environment variables. Follow example: [docker-compose.yml](./docker-compose.yml)  
+Available variables:
+```yml
+HTTP_PORT: 3001  # [OPTIONAL] Default is 3000. If you change http port, you should change your port routing in docker-compose.yml
+SERVERLESS_ACCESS_KEY: <SERVERLESS_ACCESS_KEY>  # [OPTIONAL] Used to access resources of serverless framework
+AWS_ACCESS_KEY_ID: <AWS_ACCESS_KEY_ID>  # [OPTIONAL] Is required if you need use aws resources, e.g.: DynamoDB
+AWS_SECRET_ACCESS_KEY: <AWS_SECRET_ACCESS_KEY>  # [OPTIONAL] Is required if you need use aws resources, e.g.: DynamoDB
+```
+
 ## Contribute
 Help me to write a better image to python-serverless-offline
