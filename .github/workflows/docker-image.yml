@@ -19,17 +19,36 @@ jobs:
         DOCKER_USER: ${{secrets.DOCKER_USER}}
         DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
       run: docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
-    - name: Build the Docker images
+
+    - name: Build the Alpine Docker Image
       env:
         IMAGE_NAME: ${{secrets.IMAGE_NAME}}
         DOCKER_USER: ${{secrets.DOCKER_USER}}
-      run: |
-        docker build -f ./alpine/Dockerfile -t $DOCKER_USER/$IMAGE_NAME:alpine .
-        docker build -f ./slim-buster/Dockerfile -t $DOCKER_USER/$IMAGE_NAME:slim-buster .
-    - name: Push the Docker images
+      run: docker build -f ./alpine/Dockerfile -t $DOCKER_USER/$IMAGE_NAME:alpine .
+    - name: Deploy the Alpine Docker Image
       env:
         IMAGE_NAME: ${{secrets.IMAGE_NAME}}
         DOCKER_USER: ${{secrets.DOCKER_USER}}
-      run: |
-        docker push $DOCKER_USER/$IMAGE_NAME:alpine
-        docker push $DOCKER_USER/$IMAGE_NAME:slim-buster
+      run: docker push $DOCKER_USER/$IMAGE_NAME:alpine
+
+    - name: Build the Slim-Buster Docker Image
+      env:
+        IMAGE_NAME: ${{secrets.IMAGE_NAME}}
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+      run: docker build -f ./slim-buster/Dockerfile -t $DOCKER_USER/$IMAGE_NAME:slim-buster .
+    - name: Deploy the Slim-Buster Docker Image
+      env:
+        IMAGE_NAME: ${{secrets.IMAGE_NAME}}
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+      run: docker push $DOCKER_USER/$IMAGE_NAME:slim-buster
+
+    - name: Build the latest Docker Image
+      env:
+        IMAGE_NAME: ${{secrets.IMAGE_NAME}}
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+      run: docker build -f ./slim-buster/Dockerfile -t $DOCKER_USER/$IMAGE_NAME:latest .
+    - name: Deploy the latest Docker Image
+      env:
+        IMAGE_NAME: ${{secrets.IMAGE_NAME}}
+        DOCKER_USER: ${{secrets.DOCKER_USER}}
+      run: docker push $DOCKER_USER/$IMAGE_NAME:latest
