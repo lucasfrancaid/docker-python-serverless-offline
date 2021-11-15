@@ -3,8 +3,9 @@
 # Docker Python Serverless Offline
 An image to run your python offline
 
-## Disclaim
-If you need a connection with a postgres database, use lucasfrancaid/python-serverless-offline:slim-buster
+## Disclaimers
+If you need a connection with a postgres database, use lucasfrancaid/python-serverless-offline:slim-buster.  
+The serverless.yml is required to setup your offline app.
 
 ## Usage with Docker Compose
 Create a docker-compose.yml in your directory and paste:
